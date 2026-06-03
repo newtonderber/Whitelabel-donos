@@ -1,0 +1,76 @@
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Category {
+  KLEIDUNG
+  LEBENSMITTEL
+  ELEKTRONIK
+  HAUSHALT
+  SONSTIGES
+}
+
+enum Condition {
+  NEU
+  GEBRAUCHT
+}
+
+enum Stage {
+  ANGEBOTEN
+  AUF_LAGER
+  RESERVIERT
+  AUSGEGEBEN
+}
+
+enum Priority {
+  NIEDRIG
+  MITTEL
+  HOCH
+  DRINGEND
+}
+
+model Donation {
+  id          String   @id @default(uuid())
+  title       String
+  category    String
+  amount      Int
+  condition   String
+  stage       String
+  endDate     DateTime?
+  addedDate   DateTime @default(now())
+
+  donatorContactsId String?          @unique
+  donatorContacts   DonatorContacts? @relation(fields: [donatorContactsId], references: [id], onDelete: SetNull)
+}
+
+model Configuration {
+  id              Int    @id @default(1)
+  initiativeName  String
+  logoUrl         String
+  primaryColor    String
+  impressum       String
+  contactData     String
+  latitude        Float
+  longitude       Float
+}
+
+model DonatorContacts {
+  id          String    @id @default(uuid())
+  name String
+  email String
+  phoneNumber String
+
+  donation    Donation?
+}
+
+model RequestItem {
+  id String @id @default(uuid())
+  title String
+  category Category
+  priority Priority
+  active Boolean
+}
