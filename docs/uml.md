@@ -37,7 +37,7 @@ direction text
         +String id
         +String title
         +Category category
-        +String priority
+        +Priority priority
         +boolean active
     }
 
@@ -63,9 +63,19 @@ direction text
         RESERVIERT
         AUSGEGEBEN
     }
+    
+    class Priority {
+        <<enumeration>>
+        NIEDRIG
+        MITTEL
+        HOCH
+        DRINGEND
+    }
+        
 
     Donation "1" --> "1" Category : categorized_as
     Donation "1" --> "1" Stage : currently_in
     Donation "1" --> "1" Condition : has
     Donation "1" --> "0..1" DonatorContacts : owns
     RequestItem "1" --> "1" Category : categorized_as
+    RequestItem "1" --> "1" Priority : prioritized_as

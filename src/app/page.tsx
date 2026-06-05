@@ -1,11 +1,22 @@
-import InventoryTable from "@/components/InventoryTable";
+import RequestTable from "@/components/RequestTable";
+import PageContainer from "@/components/layout/PageContainer";
+import {HeaderCard} from "@/components/ui/HeaderCard";
 
 export default function Home() {
   const initiativeName = process.env.NEXT_PUBLIC_INITIATIVE_NAME || "Standard Initiative";
 
   return (
-      <main className="p-4 max-w-6xl mx-auto">
-          <InventoryTable />
-      </main>
+      <PageContainer>
+          <HeaderCard>
+              <h1 className="text-4xl font-bold ">
+                  {initiativeName}
+              </h1>
+          </HeaderCard>
+          <div>
+              <RequestTable>
+
+              </RequestTable>
+          </div>
+      </PageContainer>
   );
 }

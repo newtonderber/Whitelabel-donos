@@ -36,10 +36,10 @@ enum Priority {
 model Donation {
   id          String   @id @default(uuid())
   title       String
-  category    String
+  category    Category
   amount      Int
-  condition   String
-  stage       String
+  condition   Condition
+  stage       Stage
   endDate     DateTime?
   addedDate   DateTime @default(now())
 

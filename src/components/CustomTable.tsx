@@ -1,29 +1,26 @@
 import { ReactNode } from "react";
+import {DataCard, DataCardContent, DataCardHeader} from "@/components/ui/DataCard";
 
 interface TableProps {
-    title?: string;
-    headers: string[];
+    title: string;
+    description?: string;
+    tableHeaders: string[];
     children: ReactNode;
 }
 
-export default function CustomTable({ title, headers, children }: TableProps) {
+export default function CustomTable({ title, description, tableHeaders, children }: TableProps) {
     return (
-        <div className="w-full rounded-2xl p-2 shadow-md bg-base-200/80">
-            {title && (
-                <h1 className="text-2xl font-bold text-base-content mb-6">
-                    {title}
-                </h1>
-            )}
-
-            <div className="overflow-x-auto w-full rounded-xl">
+        <DataCard>
+            <DataCardHeader title={title} description={description}/>
+            <DataCardContent>
                 <table className="bg-base-100  table table-lg table-pin-rows">
                     <thead>
                     <tr className="hover:bg-base-200/80 transition-colors">
-                        {headers.map(header => (
+                        {tableHeaders.map(header => (
                             <th
                                 key={header}
                                 className={`font-semibold text-base-content/70 uppercase text-s tracking-wider ${
-                                    header === "Kategorie" || header === "Zustand" || header === "Status" ? "text-center" : ""
+                                    header !== "Gegenstand" ? "text-center" : ""
                                 }`}
                             >
                                 {header}
@@ -35,7 +32,7 @@ export default function CustomTable({ title, headers, children }: TableProps) {
                     {children}
                     </tbody>
                 </table>
-            </div>
-        </div>
+            </DataCardContent>
+        </DataCard>
     );
 }

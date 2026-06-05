@@ -25,7 +25,7 @@ export default function InventoryTable() {
     return (
         <CustomTable
             title="Internes Helfer-Dashboard"
-            headers={["Gegenstand", "Kategorie", "Menge", "Zustand", "Status"]}
+            tableHeaders={["Gegenstand", "Kategorie", "Menge", "Zustand", "Status"]}
         >
             {MOCK_DONATIONS.map(donation => (
                 <tr key={donation.id} className="hover:bg-base-200/70 transition-colors">
