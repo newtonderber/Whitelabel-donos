@@ -12,7 +12,7 @@ export function DataCard({ children }: { children: ReactNode }) {
 // 2. Der Header für die Card
 interface DataCardHeaderProps {
     title: string;
-    description?: string; // Das Fragezeichen macht den Parameter optional
+    description?: string;
 }
 export function DataCardHeader({ title, description }: { title: string; description?: string }) {
     return (
