@@ -30,15 +30,15 @@ export default function RequestTable() {
         tableHeaders={["Gegenstand", "Kategorie", "Priorität", "Aktuell"]}>
             {MOCK_REQUESTS.map(request => (
               <tr key={request.id} className="hover:bg-base-200/70 transition-colors">
-                    <td className="font-semibold">{request.title}</td>
+                    <td className="font-medium text-sm md:text-lg">{request.title}</td>
                     <td className="text-center">
-                        <span className="badge badge-soft">{CATEGORY_LABELS[request.category] || request.category}</span>
+                        <span className="badge badge-soft badge-sm md:badge-md ">{CATEGORY_LABELS[request.category] || request.category}</span>
                     </td>
                     <td className="text-center">
-                        <span className="badge badge-md badge-soft">{PRIORITY_LABELS[request.priority] || request.priority}</span>
+                        <span className="badge badge-md badge-soft badge-sm">{PRIORITY_LABELS[request.priority] || request.priority}</span>
                     </td>
                     <td className="text-center">
-                        <span className="badge badge-md badge-soft">{ACTIVE_MAP[String(request.active)] || String(request.active)}</span>
+                        <span className="badge badge-md badge-soft badge-sm">{ACTIVE_MAP[String(request.active)] || String(request.active)}</span>
                     </td>
                 </tr>
             ))}

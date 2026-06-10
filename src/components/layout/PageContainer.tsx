@@ -13,8 +13,8 @@ export default function PageContainer({ children, size = "default" }: PageContai
     }[size];
 
     return (
-        <div className="min-h-screen bg-background text-base-content">
-            <div className={`mx-auto px-4 py-8 w-full ${widthClass} flex flex-col gap-16`}>
+        <div className="min-h-screen bg-background text-base-content ">
+            <div className={`mx-auto overflow-x-auto px-4 py-8 w-full ${widthClass} flex flex-col gap-16`}>
                 {children}
             </div>
         </div>

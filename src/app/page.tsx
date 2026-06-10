@@ -1,18 +1,15 @@
 import RequestTable from "@/components/RequestTable";
 import PageContainer from "@/components/layout/PageContainer";
-import {HeaderCard} from "@/components/ui/HeaderCard";
 
 export default function Home() {
-  const initiativeName = process.env.NEXT_PUBLIC_INITIATIVE_NAME || "Standard Initiative";
 
   return (
       <PageContainer>
-          <HeaderCard>
-              <h1 className="text-4xl font-bold ">
-                  {initiativeName}
-              </h1>
-          </HeaderCard>
-          <div>
+          <div className={"ml-0"}>
+              <h1 className="text-4xl md:text-4xl mt-12 font-medium tracking-tight">Hiermit kannst du uns grad helfen</h1>
+          </div>
+
+          <div className={"ml-0"}>
               <RequestTable>
 
               </RequestTable>

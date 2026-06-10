@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,12 +23,60 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const initiativeName = process.env.NEXT_PUBLIC_INITIATIVE_NAME || "Standard Initiative";
+
   return (
     <html
-      lang="en"
+      lang="de"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+      {/*responsive design for drawer/navbar*/}
+      <div className="drawer">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col">
+          {/* Navbar */}
+          <div className="navbar bg-base-300 w-full">
+            <div className="flex-none lg:hidden">
+              <label htmlFor="my-drawer-2" aria-label="open sidebar" className="btn btn-square btn-ghost">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="inline-block h-6 w-6 stroke-current"
+                >
+                  <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </label>
+            </div>
+            <div className="mx-2 flex-1 text-xl font-semibold tracking-tight px-2">{initiativeName}</div>
+            <div className="hidden flex-none lg:block">
+              <ul className="menu menu-horizontal text-lg  tracking-tight">
+                {/* Navbar menu content here */}
+                <li><Link href="/">Startseite</Link></li>
+                <li><Link href="/internal">Internes</Link></li>
+              </ul>
+            </div>
+          </div>
+          {/* Page content here */}
+          {children}
+        </div>
+        <div className="drawer-side">
+          <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+          <ul className="menu bg-base-200 min-h-full w-80 p-4">
+            {/* Sidebar content here */}
+            <li><Link href="/">Startseite</Link></li>
+            <li><Link href="/dashboard">Internes</Link></li>
+          </ul>
+        </div>
+      </div>
+      </body>
     </html>
   );
 }

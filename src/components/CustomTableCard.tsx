@@ -8,16 +8,18 @@ interface TableProps {
     children: ReactNode;
 }
 
-export default function CustomTable({ title, description, tableHeaders, children }: TableProps) {
+export default function CustomTableCard({ title, description, tableHeaders, children }: TableProps) {
     return (
         <DataCard>
-                <table className="bg-base-100  table table-pin-rows w-full table-sm md:table-md">
+            <DataCardHeader title={title} description={description}/>
+            <DataCardContent>
+                <table className="bg-base-100  table table-lg table-pin-rows">
                     <thead>
                     <tr className="hover:bg-base-200/80 transition-colors">
                         {tableHeaders.map(header => (
                             <th
                                 key={header}
-                                className={`font-semibold text-base-content/70  text-s md:text-lg  ${
+                                className={`font-semibold text-base-content/70 uppercase text-s tracking-wider ${
                                     header !== "Gegenstand" ? "text-center" : ""
                                 }`}
                             >
@@ -30,6 +32,7 @@ export default function CustomTable({ title, description, tableHeaders, children
                     {children}
                     </tbody>
                 </table>
+            </DataCardContent>
         </DataCard>
     );
 }
