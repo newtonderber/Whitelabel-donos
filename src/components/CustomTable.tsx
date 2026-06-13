@@ -10,14 +10,14 @@ interface TableProps {
 
 export default function CustomTable({ title, description, tableHeaders, children }: TableProps) {
     return (
-        <DataCard>
+
                 <table className="bg-base-100  table table-pin-rows w-full table-sm md:table-md">
                     <thead>
                     <tr className="hover:bg-base-200/80 transition-colors">
                         {tableHeaders.map(header => (
                             <th
                                 key={header}
-                                className={`font-semibold text-base-content/70  text-s md:text-lg  ${
+                                className={`font-semibold text-base-content/75  text-s md:text-lg  ${
                                     header !== "Gegenstand" ? "text-center" : ""
                                 }`}
                             >
@@ -30,6 +30,6 @@ export default function CustomTable({ title, description, tableHeaders, children
                     {children}
                     </tbody>
                 </table>
-        </DataCard>
+        
     );
 }

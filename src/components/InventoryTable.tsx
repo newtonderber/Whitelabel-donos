@@ -1,4 +1,5 @@
 import CustomTable from "@/components/CustomTable";
+import {db} from "@/lib/db";
 
 const CATEGORY_LABELS: Record<string, string> = {
     KLEIDUNG: "Kleidung",
@@ -16,18 +17,26 @@ const STAGE_LABELS: Record<string, string> = {
     AUSGEGEBEN: "Ausgegeben",
 };
 
-const MOCK_DONATIONS = [
-    { id: "1", title: "Winterjacke Gr. L", category: "KLEIDUNG", amount: 3, condition: "GEBRAUCHT", stage: "ANGENOMMEN_AUF_LAGER" },
-    { id: "2", title: "Haltbare Milch", category: "LEBENSMITTEL", amount: 12, condition: "NEU", stage: "ANGEBOTEN" }
-];
+async function getDonations(){
+    return db.donation.findMany({
+        include: {
+            donatorContacts: true,
+        },
+        orderBy: {
+            id: "desc",
+        },
+    });
+}
 
-export default function InventoryTable() {
+export default async function InventoryTable() {
+    const donations = await getDonations();
+
     return (
         <CustomTable
             title="Internes Helfer-Dashboard"
             tableHeaders={["Gegenstand", "Kategorie", "Menge", "Zustand", "Status"]}
         >
-            {MOCK_DONATIONS.map(donation => (
+            {donations.map(donation => (
                 <tr key={donation.id} className="hover:bg-base-200/70 transition-colors">
                     <td className="font-semibold">{donation.title}</td>
                     <td className="text-center">

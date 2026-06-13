@@ -35,10 +35,10 @@ export default function RequestTable() {
                         <span className="badge badge-soft badge-sm md:badge-md ">{CATEGORY_LABELS[request.category] || request.category}</span>
                     </td>
                     <td className="text-center">
-                        <span className="badge badge-md badge-soft badge-sm">{PRIORITY_LABELS[request.priority] || request.priority}</span>
+                        <span className="badge badge-soft badge-sm md:badge-md">{PRIORITY_LABELS[request.priority] || request.priority}</span>
                     </td>
                     <td className="text-center">
-                        <span className="badge badge-md badge-soft badge-sm">{ACTIVE_MAP[String(request.active)] || String(request.active)}</span>
+                        <span className="badge badge-soft badge-sm md:badge-md">{ACTIVE_MAP[String(request.active)] || String(request.active)}</span>
                     </td>
                 </tr>
             ))}
