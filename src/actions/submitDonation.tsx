@@ -1,7 +1,7 @@
 "use server";
 
-import {db} from "@/lib/db";
 import {Category, Condition} from "@prisma/client";
+import {prisma} from "@/lib/prisma";
 
 export async function submitDonation(formData: FormData) {
     const title=formData.get("title") as string;
@@ -13,7 +13,7 @@ export async function submitDonation(formData: FormData) {
     const email=formData.get("email") as string;
     const phoneNumber=formData.get("phone-number") as string;
 
-    await db.donation.create({
+    await prisma.donation.create({
         data: {
             title,
             category,
