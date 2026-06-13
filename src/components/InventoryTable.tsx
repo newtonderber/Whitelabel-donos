@@ -1,4 +1,7 @@
 import CustomTable from "@/components/CustomTable";
+import {prisma} from "@/lib/prisma";
+import Link from "next/link";
+
 
 const CATEGORY_LABELS: Record<string, string> = {
     KLEIDUNG: "Kleidung",
@@ -16,18 +19,26 @@ const STAGE_LABELS: Record<string, string> = {
     AUSGEGEBEN: "Ausgegeben",
 };
 
-const MOCK_DONATIONS = [
-    { id: "1", title: "Winterjacke Gr. L", category: "KLEIDUNG", amount: 3, condition: "GEBRAUCHT", stage: "ANGENOMMEN_AUF_LAGER" },
-    { id: "2", title: "Haltbare Milch", category: "LEBENSMITTEL", amount: 12, condition: "NEU", stage: "ANGEBOTEN" }
-];
+async function getDonations(){
+    return prisma.donation.findMany({
+        include: {
+            donatorContacts: true,
+        },
+        orderBy: {
+            id: "desc",
+        },
+    });
+}
 
-export default function InventoryTable() {
+export default async function InventoryTable() {
+    const donations = await getDonations();
+
     return (
         <CustomTable
             title="Internes Helfer-Dashboard"
-            tableHeaders={["Gegenstand", "Kategorie", "Menge", "Zustand", "Status"]}
+            tableHeaders={["Gegenstand", "Kategorie", "Menge", "Zustand", "Status", "Kontakt"]}
         >
-            {MOCK_DONATIONS.map(donation => (
+            {donations.map(donation => (
                 <tr key={donation.id} className="hover:bg-base-200/70 transition-colors">
                     <td className="font-semibold">{donation.title}</td>
                     <td className="text-center">
@@ -40,6 +51,8 @@ export default function InventoryTable() {
                     <td className="text-center">
                         <span className="badge badge-md badge-soft">{STAGE_LABELS[donation.stage] || donation.stage}</span>
                     </td>
+                    <td className="text-center"><Link href={`/dashboard/contacts/${donation.donatorContactsId}`}>Anzeigen</Link></td>
+
                 </tr>
             ))}
         </CustomTable>
