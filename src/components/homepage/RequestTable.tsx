@@ -6,7 +6,6 @@ TODO: fix async-hook conflict by dividing into server and client component
 import CustomTable from "@/components/ui/CustomTable";
 import type { Priority, Category } from "@prisma/client";
 import {useRef, useState} from "react";
-import {prisma} from "@/lib/prisma";
 import {submitDonation} from "@/actions/submitDonation";
 
 
@@ -37,14 +36,6 @@ const MOCK_REQUESTS: { id: string, title: string, category: Category, priority: 
 /* --- Main Code --- */
 type DonationTableProps = {
     editable?: boolean;
-}
-
-async function getRequests(){
-    return prisma.requestItem.findMany({
-        orderBy: {
-            id: "desc",
-        },
-    });
 }
 
 export default function RequestTable({ editable = false }: DonationTableProps) {
