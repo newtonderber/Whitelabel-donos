@@ -1,4 +1,4 @@
-import CustomTable from "@/components/CustomTable";
+import CustomTable from "@/components/ui/CustomTable";
 import {prisma} from "@/lib/prisma";
 import Link from "next/link";
 

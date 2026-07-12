@@ -1,7 +1,10 @@
 import {DataCard, DataCardContent} from "@/components/ui/DataCard";
 import {submitDonation} from "@/actions/submitDonation";
 
-
+/*
+this component displays the donation form to submit donations and contact data as a donator.
+the submission creates an entity in the database via the imported server action
+ */
 export default function DonationForm(){
     return(<DataCard>
         <DataCardContent>
@@ -16,8 +19,8 @@ export default function DonationForm(){
                         </fieldset>
                         <fieldset className="fieldset">
                             <legend className="fieldset-legend">Zu welcher Kategorie gehört die Spende?</legend>
-                            <select name="category" className="select">
-                                <option disabled selected>Kategorie auswählen</option>
+                            <select name="category" className="select" defaultValue={""} required>
+                                <option value={""} disabled>Kategorie auswählen</option>
                                 <option value="KLEIDUNG">Kleidung</option>
                                 <option value="LEBENSMITTEL">Lebensmittel</option>
                                 <option value="ELEKTRONIK">Elektronik</option>
@@ -26,7 +29,7 @@ export default function DonationForm(){
                         <fieldset className="fieldset">
                             <legend className="fieldset-legend">In welchem Zustand befindet sich die Spende?</legend>
                             <select name="condition" className="select">
-                                <option disabled selected>Zustand auswählen</option>
+                                <option value={""} disabled>Zustand auswählen</option>
                                 <option value="NEU">Neu</option>
                                 <option value="GEBRAUCHT">Gebraucht</option>
                             </select>

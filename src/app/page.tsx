@@ -1,6 +1,6 @@
-import RequestTable from "@/components/RequestTable";
+import RequestTable from "@/components/homepage/RequestTable";
 import PageContainer from "@/components/layout/PageContainer";
-import DonationForm from "@/components/DonationForm";
+import DonationForm from "@/components/homepage/DonationForm";
 
 export default function Home() {
 

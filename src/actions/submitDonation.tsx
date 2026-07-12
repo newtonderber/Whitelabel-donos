@@ -3,6 +3,9 @@
 import {Category, Condition} from "@prisma/client";
 import {prisma} from "@/lib/prisma";
 
+/*
+this server action creates a donation with contact data in the database based on the form inputs on form submission
+ */
 export async function submitDonation(formData: FormData) {
     const title=formData.get("title") as string;
     const category=formData.get("category") as Category;
